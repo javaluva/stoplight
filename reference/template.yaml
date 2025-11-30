@@ -1,8 +1,8 @@
 openapi: 3.1.0
 x-stoplight:
-  id: mgfttb22r7tv0
+  id: eee3iv9i7mtqc
 info:
-  title: asdf
+  title: template
   version: '1.0'
 servers:
   - url: 'http://localhost:3000'

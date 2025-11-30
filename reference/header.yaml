@@ -1,0 +1,655 @@
+openapi: 3.1.0
+x-stoplight:
+  id: urq9oi010bvq0
+info:
+  title: XXXX API
+  description: |-
+    Xxxx = Advice agreement
+    XXXX = Advice Agreement
+    xxxx = advice agreement
+    xx-xx = advice-agreement
+    xxXX = adviceAgreement
+    XxxX = AdviceAgreement
+    XX_XX = ADVICE_AGREEMENT
+    The XXXX API provides the ability to capture xxxxs for a client by an adviser or linked assistant.
+    The API is secured by OAuth2.
+    The FSP context need to be provided explicitly for verification or context key (broker house code-broker code).
+    Relationships between an adviser and client are verified by using the supplied clientKey (Channel Client Services).
+  contact:
+    name: Team Samurais
+    email: franco.opperman@momentum.co.za
+  version: v1.0
+servers:
+  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+    description: Internal testing server
+  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+    description: External testing server
+  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+    description: Internal pre-live server
+  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+    description: External pre-live server
+  - url: 'https://xx-xx.adv-slsprd.momentum.co.za/xx-xx'
+    description: Internal production server
+  - url: 'https://xx-xx.adv-slsprd.momentum.co.za/xx-xx'
+    description: External production server
+paths:
+  /v1/xx-xxs/query:
+    post:
+      summary: Xxxx query resource
+      responses:
+        '200':
+          description: Xxxxs retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XxxX'
+                  x-stoplight:
+                    id: hrk8ei59xgdmc
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: retrieveXxxXsByCriteria
+      description: Retrieve all xxxxs by search criteria
+      security:
+        - access_token: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XxxXQuery'
+        description: Retrieve all xxxxs by search criteria
+      tags:
+        - Query
+    parameters: []
+  /v1/xx-xxs:
+    post:
+      summary: Xxxx creation resource
+      operationId: createXxxX
+      responses:
+        '201':
+          description: Xxxx created successful
+          content:
+            application/json:
+              schema:
+                type: string
+          headers:
+            location:
+              schema:
+                type: string
+              description: The location URL of the newly created xxxx
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Creation
+      description: 'Create a new xxxx '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XxxX'
+      security:
+        - access_token: []
+    parameters: []
+  '/v1/xx-xxs/{xx-xx-key}/action':
+    post:
+      summary: Xxxx action resource
+      operationId: actionXxxX
+      responses:
+        '201':
+          description: Xxxx action successful
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Action
+      description: 'Action a new xxxx '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AaaA'
+      security:
+        - access_token: []
+    parameters:
+      - schema:
+          type: string
+        name: xx-xx-key
+        in: path
+        required: true
+        description: The xxxx unique key
+  '/v1/xx-xxs/{xx-xx-key}':
+    parameters:
+      - schema:
+          type: string
+        name: xx-xx-key
+        in: path
+        required: true
+    get:
+      summary: Xxxx retrieval by xxxx key
+      tags:
+        - Retrieval
+      responses:
+        '200':
+          description: Get a specific xxxx via the xxxx key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XxxX'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: getXxxXByKey
+      description: Get an existing xxxx via xxxx key
+      security:
+        - access_token: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: The originating system of the request for auditing and tracing purposes
+          required: true
+    delete:
+      summary: Xxxx removal by xxxx key
+      operationId: removeXxxXByKey
+      responses:
+        '204':
+          description: Removal of xxxx completed
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Remove an existing xxxx completely
+      security:
+        - access_token: []
+      requestBody:
+        content: {}
+        description: ''
+      tags:
+        - Removal
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: The originating system of the request for auditing and tracing purposes
+          required: true
+    patch:
+      summary: Partially update an existing xxxx
+      operationId: updateXxxXByKey
+      responses:
+        '202':
+          description: Update of xxxx accepted
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Partially update an existing xxxx
+      tags:
+        - Update
+components:
+  schemas:
+    XxxXQuery:
+      title: XxxXQuery
+      type: object
+      description: Xxxx query representation
+      properties:
+        contextKey:
+          type: string
+          example: 012345-098765
+          minLength: 13
+          maxLength: 13
+          description: The unique key of the adviser or linked assistant (or employee) associated with this change
+        clientKey:
+          type: string
+          minLength: 0
+          maxLength: 64
+          format: uuid
+          description: The unique client key from the Channel Client Services (CCS) source system
+        origin:
+          $ref: '#/components/schemas/OriginEnum'
+        fsp:
+          $ref: '#/components/schemas/FinancialServicesProviderEnum'
+      required:
+        - contextKey
+        - clientKey
+        - origin
+        - fsp
+      x-stoplight:
+        id: so1ogkq06l0ch
+    XxxX:
+      title: XxxX
+      type: object
+      description: The xxxx model
+      properties:
+        xxXXKey:
+          type: string
+          format: uuid
+          description: 'The unique key of the associated xxxx '
+        contextKey:
+          type: string
+          minLength: 13
+          maxLength: 13
+          description: The unique key of the adviser or linked assistant (or employee) associated with this change
+        clientKey:
+          type: string
+          format: uuid
+          description: The unique client key from the Channel Client Services (CCS) source system
+        fsp:
+          $ref: '#/components/schemas/FinancialServicesProviderEnum'
+        originatingSystem:
+          $ref: '#/components/schemas/OriginEnum'
+        originatingSystemKey:
+          type: string
+        originatingSystemCreatedDate:
+          type: string
+          format: date-time
+          description: The timestamp at which the event occurred in the originating system
+        acceptanceSystem:
+          $ref: '#/components/schemas/OriginEnum'
+        acceptanceSystemKey:
+          type: string
+        acceptanceSystemCreatedDate:
+          type: string
+          format: date-time
+          description: The timestamp at which the acceptance event occurred in the acceptance system
+        createdBy:
+          type: string
+          format: uuid
+          description: The unique key of the user or system originated this change
+        createdDate:
+          type: string
+          format: date-time
+          description: The timestamp at which the change occurred
+        modifiedBy:
+          type: string
+          format: uuid
+        modifiedDate:
+          type: string
+          format: date-time
+      required:
+        - contextKey
+        - clientKey
+        - fsp
+      x-stoplight:
+        id: u72ouqj1jh0is
+    AaaA:
+      title: AaaA
+      x-stoplight:
+        id: vkpfezm1bjlr3
+      type: object
+      description: The aaaa model
+      properties:
+        xxXXKey:
+          type: string
+          format: uuid
+          description: 'The unique key of the associated xxxx '
+        contextKey:
+          type: string
+          minLength: 13
+          maxLength: 13
+          description: The unique key of the adviser or linked assistant (or employee) associated with this change
+        clientKey:
+          type: string
+          format: uuid
+          description: The unique client key from the Channel Client Services (CCS) source system
+        fsp:
+          $ref: '#/components/schemas/FinancialServicesProviderEnum'
+        origin:
+          $ref: '#/components/schemas/OriginEnum'
+        originKey:
+          type: string
+        originCreatedDate:
+          type: string
+          format: date-time
+          description: The timestamp at which the event occurred in the originating system
+        modifiedBy:
+          type: string
+          format: uuid
+        modifiedDate:
+          type: string
+          format: date-time
+      required:
+        - contextKey
+        - clientKey
+        - fsp
+        - origin
+        - originKey
+    ErrorMessage:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+        details:
+          type: string
+          readOnly: true
+      description: A representation of an error message
+      x-stoplight:
+        id: bb0h2r2o8xf3l
+    OriginEnum:
+      title: OriginEnum
+      type: string
+      enum:
+        - MYRIAD
+        - ELITE_WEALTH
+      example: MYRIAD
+      description: An enumeration of Originating Systems
+      x-stoplight:
+        id: zn64h4qcdwj3u
+    FinancialServicesProviderEnum:
+      title: FinancialServicesProviderEnum
+      type: string
+      enum:
+        - CONSULT
+        - MFP
+        - MDS
+      description: The Financial Service Provider association
+      x-stoplight:
+        id: zwiwrudclghxh
+    ExampleSchema:
+      type: object
+      title: ExampleSchema
+      description: The ExampleSchema model
+      properties:
+        fsp:
+          type: string
+          description: |-
+            The Financial Services Provider associated with the client/adviser
+            One of:
+            CONSULT, MFP, MDS
+          example: CONSULT
+        contextKey:
+          type: string
+          description: The unique adviser key (currently broker house code - broker code combination
+          minLength: 13
+          maxLength: 13
+          example: 039999-123456
+        origin:
+          type: string
+          description: |-
+            An indication of the originating system from an enumeration list, used for tracking and tracing purposes.
+            One of:
+            ELITE_WEALTH, MYRIAD
+          minLength: 2
+          maxLength: 50
+          example: MYRIAD
+        idNumber:
+          type: string
+          description: The ID Number Country of Issue of the client
+          minLength: 11
+          maxLength: 13
+          example: '7106288036088'
+        passportNumber:
+          type: string
+          description: The Passport Number of the client
+          minLength: 3
+          maxLength: 50
+          example: P98256478542
+      required:
+        - fsp
+        - contextKey
+        - origin
+    NaturalPerson:
+      type: object
+      title: NaturalPerson
+      description: The NaturalPerson model
+      properties:
+        fsp:
+          type: string
+          description: |-
+            The Financial Services Provider associated with the client/adviser
+            One of:
+            CONSULT, MFP, MDS
+          example: CONSULT
+        contextKey:
+          type: string
+          description: The unique adviser key (currently broker house code - broker code combination
+          minLength: 13
+          maxLength: 13
+          example: 039999-123456
+        origin:
+          type: string
+          description: |-
+            An indication of the originating system from an enumeration list, used for tracking and tracing purposes.
+            One of:
+            ELITE_WEALTH, MYRIAD
+          minLength: 2
+          maxLength: 50
+          example: MYRIAD
+        idNumber:
+          type: string
+          description: The ID Number Country of Issue of the client
+          minLength: 11
+          maxLength: 13
+          example: '7106288036088'
+        passportNumber:
+          type: string
+          description: The Passport Number of the client
+          minLength: 3
+          maxLength: 50
+          example: P98256478542
+      required:
+        - fsp
+        - contextKey
+        - origin
+  securitySchemes:
+    access_token:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: ''
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+        clientCredentials:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+tags:
+  - name: Creation
+  - name: Publish
+  - name: Query
+  - name: Removal
+  - name: Replacement
+  - name: Retrieval
+  - name: Update
+  - name: Action
