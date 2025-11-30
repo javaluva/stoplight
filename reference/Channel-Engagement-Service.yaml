@@ -124,6 +124,60 @@ paths:
       tags:
         - Query
     parameters: []
+  /v1/clients/query:
+    post:
+      summary: Clients query resource
+      responses:
+        '200':
+          description: List of Clients retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientList'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. Authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: retrieveClientListByCriteria
+      description: Retrieve all Clients by search criteria
+      security:
+        - access_token: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientListQuery'
+        description: Retrieve all ClientList by search criteria
+      tags:
+        - Query
+    parameters: []
 components:
   schemas:
     User:
