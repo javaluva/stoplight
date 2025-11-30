@@ -1,15 +1,13 @@
-  /v1/{path_name}/query:
-    post:
-      summary: {model_name_singular} query resource
+    patch:
+      summary: Partially update an existing xxxx
+      operationId: updateXxxXByKey
       responses:
-        '200':
-          description: List of {model_name} retrieved successfully
+        '202':
+          description: Update of xxxx accepted
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/{schema_name_response}'
+                type: string
         '400':
           description: Invalid request
           content:
@@ -18,7 +16,7 @@
                 $ref: '#/components/schemas/ErrorMessage'
         '401':
           description: >-
-            Authentication required. Authentication
+            Authentication required. This will be raised if the authentication
             token is missing or is invalid in some way.
           content:
             application/json:
@@ -32,23 +30,18 @@
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
-      operationId: retrieve{schema_name}ByCriteria
-      description: Retrieve all {model_name} by search criteria
-      security:
-        - access_token: []
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/{schema_name_request}'
-        description: Retrieve all {schema_name} by search criteria
+      description: Partially update an existing xxxx
       tags:
-        - Query
-    parameters: []
+        - Update

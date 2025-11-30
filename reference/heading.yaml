@@ -1,37 +1,25 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
-  title: XXXX API
+  title: Channel Engagement Service API
   description: |-
-    Xxxx = Advice agreement
-    XXXX = Advice Agreement
-    xxxx = advice agreement
-    xx-xx = advice-agreement
-    xxXX = adviceAgreement
-    XxxX = AdviceAgreement
-    XX_XX = ADVICE_AGREEMENT
-    The XXXX API provides the ability to capture xxxxs for a client by an adviser or linked assistant.
+    The Channel Engagment Service (CES) API provides the ability to interact securely with the client and advice domains for a client associated to an adviser or linked assistant.
     The API is secured by OAuth2.
-    The FSP context need to be provided explicitly for verification or context key (broker house code-broker code).
-    Relationships between an adviser and client are verified by using the supplied clientKey (Channel Client Services).
-    https://sls-xx-xx-dev.momentum.co.za/xx-xx/swagger-ui/index.html
+    The FSP context need to be provided explicitly for verification of user context with the context key (broker house code-broker code combination).
+    Relationships between an adviser and client are verified by using the supplied clientKey
   contact:
     name: Team Samurais
     email: franco.opperman@momentum.co.za
   version: v1.0
 servers:
-  - url: 'https://xx-xx.adv-slsdev.momentum.co.za/xx-xx'
-    description: Internal development server
-  - url: 'https://xx-xx.adv-slsdev.momentum.co.za/xx-xx'
-    description: External development server
-  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.adv-slstst.momentum.co.za/channel-engagament-service'
     description: Internal testing server
-  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
     description: External testing server
-  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.adv-slspre.momentum.co.za/channel-engagament-service'
     description: Internal pre-live server
-  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
     description: External pre-live server
-  - url: 'https://xx-xx.adv-sls.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.adv-sls.momentum.co.za/channel-engagament-service'
     description: Internal production server
-  - url: 'https://xx-xx.adv-sls.momentum.co.za/xx-xx'
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
     description: External production server

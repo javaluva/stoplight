@@ -1,150 +1,129 @@
 openapi: 3.1.0
-x-stoplight:
-  id: auog1r5dhfk3s
 info:
-  title: Channel Engagement Service
-  version: '1.0'
+  title: Channel Engagement Service API
+  description: |-
+    The Channel Engagment Service (CES) API provides the ability to interact securely with the client and advice domains for a client associated to an adviser or linked assistant.
+    The API is secured by OAuth2.
+    The FSP context need to be provided explicitly for verification of user context with the context key (broker house code-broker code combination).
+    Relationships between an adviser and client are verified by using the supplied clientKey
+  contact:
+    name: Team Samurais
+    email: franco.opperman@momentum.co.za
+  version: v1.0
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://channel-engagament-service.adv-slstst.momentum.co.za/channel-engagament-service'
+    description: Internal testing server
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
+    description: External testing server
+  - url: 'https://channel-engagament-service.adv-slspre.momentum.co.za/channel-engagament-service'
+    description: Internal pre-live server
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
+    description: External pre-live server
+  - url: 'https://channel-engagament-service.adv-sls.momentum.co.za/channel-engagament-service'
+    description: Internal production server
+  - url: 'https://channel-engagament-service.momentum.co.za/channel-engagament-service'
+    description: External production server
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
-    get:
-      summary: Get User Info by User ID
-      tags: []
-      responses:
-        '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the information of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
+  /v1/natural-persons/query:
     post:
-      summary: Create New User
-      operationId: post-user
+      summary: Natural Person query resource
       responses:
         '200':
-          description: User Created
+          description: List of Natural Persons retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+                type: array
+                items:
+                  $ref: '#/components/schemas/NaturalPerson'
         '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. Authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: retrieveNaturalPersonByCriteria
+      description: Filter Natural Person collection by search criteria
+      security:
+        - access_token: []
+      parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
+              $ref: '#/components/schemas/NaturalPersonQuery'
+        description: Retrieve all Natural Person by search criteria
+      tags:
+        - Query
+    parameters: []
+  /v1/juristic-entities/query:
+    post:
+      summary: Juristic Entity query resource
+      responses:
+        '200':
+          description: List of Juristic Entities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JuristicEntity'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. Authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: retrieveJuristicEntitiesByCriteria
+      description: Retrieve all Juristic Entities by search criteria
+      security:
+        - access_token: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JuristicEntityQuery'
+        description: Retrieve all JuristicEntities by search criteria
+      tags:
+        - Query
+    parameters: []
 components:
   schemas:
     User:
@@ -187,3 +166,25 @@ components:
         - lastName
         - email
         - emailVerified
+  securitySchemes:
+    access_token:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: ''
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+        clientCredentials:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+tags:
+  - name: Creation
+  - name: Publish
+  - name: Query
+  - name: Removal
+  - name: Replacement
+  - name: Retrieval
+  - name: Update
+  - name: ActionXXX
