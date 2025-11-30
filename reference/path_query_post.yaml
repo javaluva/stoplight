@@ -1,0 +1,54 @@
+  /v1/{path_name}/query:
+    post:
+      summary: {model_name} query resource
+      responses:
+        '200':
+          description: {model_name} retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/{schema_name_response}'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. Authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: retrieve{schema_name}ByCriteria
+      description: Retrieve all {model_name} by search criteria
+      security:
+        - access_token: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/{schema_name_request}'
+        description: Retrieve all {schema_name} by search criteria
+      tags:
+        - Query
+    parameters: []
