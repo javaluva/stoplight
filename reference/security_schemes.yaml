@@ -1,0 +1,13 @@
+  securitySchemes:
+    access_token:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: ''
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+        clientCredentials:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}

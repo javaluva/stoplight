@@ -1,0 +1,70 @@
+    get:
+      summary: Xxxx retrieval by xxxx key
+      tags:
+        - Retrieval
+      responses:
+        '200':
+          description: Get a specific xxxx via the xxxx key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XxxX'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. This will be raised if the authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: getXxxXByKey
+      description: Get an existing xxxx via xxxx key
+      security:
+        - access_token: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: >-
+            The originating system of the request for auditing and tracing
+            purposes
+          required: true

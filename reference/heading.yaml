@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: XXXX API
+  description: |-
+    Xxxx = Advice agreement
+    XXXX = Advice Agreement
+    xxxx = advice agreement
+    xx-xx = advice-agreement
+    xxXX = adviceAgreement
+    XxxX = AdviceAgreement
+    XX_XX = ADVICE_AGREEMENT
+    The XXXX API provides the ability to capture xxxxs for a client by an adviser or linked assistant.
+    The API is secured by OAuth2.
+    The FSP context need to be provided explicitly for verification or context key (broker house code-broker code).
+    Relationships between an adviser and client are verified by using the supplied clientKey (Channel Client Services).
+    https://sls-xx-xx-dev.momentum.co.za/xx-xx/swagger-ui/index.html
+  contact:
+    name: Team Samurais
+    email: franco.opperman@momentum.co.za
+  version: v1.0
+servers:
+  - url: 'https://xx-xx.adv-slsdev.momentum.co.za/xx-xx'
+    description: Internal development server
+  - url: 'https://xx-xx.adv-slsdev.momentum.co.za/xx-xx'
+    description: External development server
+  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+    description: Internal testing server
+  - url: 'https://xx-xx.adv-slstst.momentum.co.za/xx-xx'
+    description: External testing server
+  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+    description: Internal pre-live server
+  - url: 'https://xx-xx.adv-slspre.momentum.co.za/xx-xx'
+    description: External pre-live server
+  - url: 'https://xx-xx.adv-sls.momentum.co.za/xx-xx'
+    description: Internal production server
+  - url: 'https://xx-xx.adv-sls.momentum.co.za/xx-xx'
+    description: External production server
