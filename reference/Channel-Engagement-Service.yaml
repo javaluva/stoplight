@@ -345,6 +345,121 @@ paths:
       security:
         - access_token: []
     parameters: []
+  '/v1/natural-persons/{clientKey}/full-details':
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The unique CCS client key
+    get:
+      summary: Natural Person (full details) retrieval by client key
+      tags:
+        - Retrieval
+      responses:
+        '200':
+          description: Get a specific natural person via the client key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NaturalPersonFullDetails'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: getNaturalPersonFullDetailsByKey
+      description: Get an existing natural person via natural person key
+      security:
+        - access_token: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: The originating system of the request for auditing and tracing purposes
+          required: true
+    patch:
+      summary: Partially update an existing natural person (full details)
+      operationId: updateNaturalPersonFullDetailsByKey
+      responses:
+        '202':
+          description: Update of natural person (full details) accepted
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Partially update an existing natural person (full details)
+      tags:
+        - Update
   /v1/juristic-entities/full-details:
     post:
       summary: Juristic Entity (Full Details) creation resource
@@ -402,6 +517,121 @@ paths:
       security:
         - access_token: []
     parameters: []
+  '/v1/juristic-entities/{clientKey}/full-details':
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The unique CCS client key
+    get:
+      summary: Juristic Entity retrieval by client key
+      tags:
+        - Retrieval
+      responses:
+        '200':
+          description: Get a specific juristic entity via the client key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JuristicEntity'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: getJuristicEntityFullDetailsByKey
+      description: Get an existing juristic entity via juristic entity key
+      security:
+        - access_token: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: The originating system of the request for auditing and tracing purposes
+          required: true
+    patch:
+      summary: Partially update an existing juristic entity (full details)
+      operationId: updateJuristicEntityFullDetailsByKey
+      responses:
+        '202':
+          description: Update of juristic entity (full details) accepted
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Partially update an existing juristic entity (full details)
+      tags:
+        - Update
   '/v1/natural-persons/{clientKey}':
     parameters:
       - schema:
@@ -590,6 +820,443 @@ paths:
             The originating system of the request for auditing and tracing
             purposes
           required: true
+  '/v1/juristic-entities/{clientKey}':
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The unique CCS client key
+    get:
+      summary: Juristic Entity retrieval by client key
+      tags:
+        - Retrieval
+      responses:
+        '200':
+          description: Get a specific juristic entity via the client key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JuristicEntity'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      operationId: getJuristicEntityByKey
+      description: Get an existing juristic entity via juristic entity key
+      security:
+        - access_token: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: The originating system of the request for auditing and tracing purposes
+          required: true
+    patch:
+      summary: Partially update an existing juristic entity
+      operationId: updateJuristicEntityByKey
+      responses:
+        '202':
+          description: Update of juristic entity accepted
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Authentication required. This will be raised if the authentication token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Requesting (authenticated) party is not authorised to access requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Partially update an existing juristic entity
+      tags:
+        - Update
+    delete:
+      summary: Juristic entity removal by client key
+      operationId: removeJuristicEntityByKey
+      responses:
+        '204':
+          description: Removal of juristic entity completed
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. This will be raised if the authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      description: Remove an existing juristic entity completely
+      security:
+        - access_token: []
+      requestBody:
+        content: {}
+        description: ''
+      tags:
+        - Removal
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fsp
+          description: The FSP association
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: contextKey
+          description: The adviser's context key/code combination
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: origin
+          description: >-
+            The originating system of the request for auditing and tracing
+            purposes
+          required: true
+  '/v1/natural-persons/{clientKey}/declaration-acceptance':
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The client unique key
+    post:
+      summary: Natural person declaration acceptance resource
+      operationId: acceptDeclarationForNaturalPerson
+      responses:
+        '201':
+          description: Natural person declaration acceptance successful
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. The authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Declaration Acceptance
+      description: 'Declaration acceptance (natural person)'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NaturalPersonDeclarationAcceptance'
+      security:
+        - access_token: []
+  '/v1/natural-persons/{clientKey}/relationship-creation':
+    post:
+      summary: Natural person relationship creation resource
+      operationId: relationshipCreationForNaturalPerson
+      responses:
+        '201':
+          description: Natural person relationship creation successful
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. The authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Relationship Creation
+      description: '{action_name} ({model_name_singular})'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NaturalPersonRelationshipCreation'
+      security:
+        - access_token: []
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The client unique key
+  '/v1/juristic-entities/{clientKey}/declaration-acceptance':
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The client unique key
+    post:
+      summary: Juristic entity declaration acceptance resource
+      operationId: acceptDeclarationForJuristicEntity
+      responses:
+        '201':
+          description: Juristic entity declaration acceptance successful
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. The authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Declaration Acceptance
+      description: 'Declaration acceptance (juristic entity)'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JuristicEntityDeclarationAcceptance'
+      security:
+        - access_token: []
+  '/v1/juristic-entities/{clientKey}/relationship-creation':
+    post:
+      summary: Juristic entity relationship creation resource
+      operationId: relationshipCreationForJuristicEntity
+      responses:
+        '201':
+          description: Juristic entity relationship creation successful
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: >-
+            Authentication required. The authentication
+            token is missing or is invalid in some way.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: >-
+            Requesting (authenticated) party is not authorised to access
+            requested information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: No resource exists at the location provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      tags:
+        - Relationship Creation
+      description: '{action_name} ({model_name_singular})'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JuristicEntityRelationshipCreation'
+      security:
+        - access_token: []
+    parameters:
+      - schema:
+          type: string
+        name: clientKey
+        in: path
+        required: true
+        description: The client unique key
+
 components:
   schemas:
     User:
@@ -653,4 +1320,5 @@ tags:
   - name: Replacement
   - name: Retrieval
   - name: Update
-  - name: ActionXXX
+  - name: Declaration Acceptance
+  - name: Relationship Creation

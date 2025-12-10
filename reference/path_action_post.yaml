@@ -1,62 +1,62 @@
-'/v1/{path_name}/{{key}}/{action_path_name}':
-    post:
-      summary: {model_name} {action_name} resource
-      operationId: {action_method_name}{schema_name}
-      responses:
-        '201':
-          description: {model_name} {action_name} successful
+    '/v1/{path_name}/{{key}}/{action_path_name}':
+      post:
+        summary: {model_name} {action_name} resource
+        operationId: {action_method_name}{schema_name}
+        responses:
+          '201':
+            description: {model_name} {action_name} successful
+            content:
+              application/json:
+                schema:
+                  type: string
+          '400':
+            description: Invalid request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorMessage'
+          '401':
+            description: >-
+              Authentication required. The authentication
+              token is missing or is invalid in some way.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorMessage'
+          '403':
+            description: >-
+              Requesting (authenticated) party is not authorised to access
+              requested information
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorMessage'
+          '404':
+            description: No resource exists at the location provided
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorMessage'
+          '500':
+            description: Internal server error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorMessage'
+        tags:
+          - Action
+        description: '{action_name} ({model_name_singular})'
+        requestBody:
           content:
             application/json:
               schema:
-                type: string
-        '400':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        '401':
-          description: >-
-            Authentication required. The authentication
-            token is missing or is invalid in some way.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        '403':
-          description: >-
-            Requesting (authenticated) party is not authorised to access
-            requested information
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        '404':
-          description: No resource exists at the location provided
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-      tags:
-        - Action
-      description: '{action_name} ({model_name_singular})'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/{action_schema_name}'
-      security:
-        - access_token: []
-    parameters:
-      - schema:
-          type: string
-        name: {key}
-        in: path
-        required: true
-        description: The {model_name_singular} unique key
+                $ref: '#/components/schemas/{action_schema_name}'
+        security:
+          - access_token: []
+      parameters:
+        - schema:
+            type: string
+          name: {key}
+          in: path
+          required: true
+          description: The {model_name_singular} unique key
