@@ -1,7 +1,7 @@
   /v1/{path_name}:
     post:
       summary: {model_name_singular} creation resource
-      operationId: create{schema_name}
+      operationId: create{method_name}
       responses:
         '201':
           description: {model_name_singular} created successful

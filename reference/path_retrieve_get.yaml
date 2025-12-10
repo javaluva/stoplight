@@ -1,3 +1,4 @@
+  /v1/{path_name}/{clientKey}:
     get:
       summary: Xxxx retrieval by xxxx key
       tags:

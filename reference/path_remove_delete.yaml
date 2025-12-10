@@ -1,3 +1,4 @@
+  /v1/{path_name}/{clientKey}:
     delete:
       summary: Xxxx removal by xxxx key
       operationId: removeXxxXByKey
